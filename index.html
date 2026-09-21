@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Vedant Drawing App - A fun, colorful, and interactive drawing and coloring web app for kids. Draw with rainbow brushes, stamps, shapes, and color cute drawings!">
+    <meta name="theme-color" content="#ff477e">
+    <title>Vedant Drawing App - Fun Kids Drawing & Coloring</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container" id="appContainer">
+        <!-- Top Navigation Header -->
+        <header class="top-header" id="topHeader">
+            <div class="brand-wrapper" id="brandLogo" title="Vedant Drawing App">
+                <span class="brand-icon">🎨</span>
+                <h1 class="brand-title">Vedant Drawing App</h1>
+            </div>
+
+            <div class="header-actions">
+                <button class="bubble-btn secondary" id="btnTemplates" title="Coloring Book Pages" aria-label="Coloring Pages">
+                    <span>📖</span>
+                    <span class="btn-text">Coloring Book</span>
+                </button>
+
+                <button class="bubble-btn icon-only" id="btnUndo" disabled title="Undo (Ctrl+Z)" aria-label="Undo">
+                    <span>↩️</span>
+                </button>
+
+                <button class="bubble-btn icon-only" id="btnRedo" disabled title="Redo (Ctrl+Y)" aria-label="Redo">
+                    <span>↪️</span>
+                </button>
+
+                <button class="bubble-btn accent" id="btnParty" title="Party Celebration!" aria-label="Party">
+                    <span>🎉</span>
+                </button>
+
+                <button class="bubble-btn icon-only active" id="btnSound" title="Toggle Sound FX" aria-label="Sound">
+                    <span>🔊</span>
+                </button>
+
+                <button class="bubble-btn danger icon-only" id="btnClear" title="Clear Canvas" aria-label="Clear Canvas">
+                    <span>🗑️</span>
+                </button>
+
+                <button class="bubble-btn" id="btnPrint" title="Print Drawing" aria-label="Print">
+                    <span>🖨️</span>
+                    <span class="btn-text">Print</span>
+                </button>
+
+                <button class="bubble-btn primary" id="btnSave" title="Save / Download Drawing" aria-label="Save">
+                    <span>💾</span>
+                    <span class="btn-text">Save Art</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Workspace Area -->
+        <main class="main-workspace" id="mainWorkspace">
+            <!-- Canvas Container -->
+            <div class="canvas-container" id="canvasContainer"></div>
+
+            <!-- Floating Side Tools Dock -->
+            <aside class="floating-tools-dock" id="floatingToolsDock" aria-label="Drawing Tools">
+                <button class="tool-btn active" data-tool="brush" title="Paint Brush" id="toolBrush">
+                    <span>✏️</span>
+                    <span class="tool-label">Brush</span>
+                </button>
+
+                <button class="tool-btn" data-tool="rainbow" title="Magic Rainbow Brush" id="toolRainbow">
+                    <span>🌈</span>
+                    <span class="tool-label">Rainbow</span>
+                </button>
+
+                <button class="tool-btn" data-tool="glow" title="Neon Glow Brush" id="toolGlow">
+                    <span>✨</span>
+                    <span class="tool-label">Glow</span>
+                </button>
+
+                <button class="tool-btn" data-tool="sparkle" title="Star Sparkle Brush" id="toolSparkle">
+                    <span>🌟</span>
+                    <span class="tool-label">Sparkle</span>
+                </button>
+
+                <button class="tool-btn" data-tool="crayon" title="Crayon / Chalk" id="toolCrayon">
+                    <span>🖍️</span>
+                    <span class="tool-label">Crayon</span>
+                </button>
+
+                <button class="tool-btn" data-tool="bucket" title="Paint Bucket Fill" id="toolBucket">
+                    <span>🪣</span>
+                    <span class="tool-label">Fill</span>
+                </button>
+
+                <button class="tool-btn" data-tool="eraser" title="Eraser" id="toolEraser">
+                    <span>🧼</span>
+                    <span class="tool-label">Eraser</span>
+                </button>
+
+                <button class="tool-btn" data-tool="shape" title="Fun Shapes" id="toolShape">
+                    <span>⭐</span>
+                    <span class="tool-label">Shapes</span>
+                </button>
+
+                <button class="tool-btn" data-tool="sticker" title="Cute Stickers" id="toolSticker">
+                    <span>🦄</span>
+                    <span class="tool-label">Stickers</span>
+                </button>
+
+                <button class="tool-btn" data-tool="text" title="Add Text" id="toolText">
+                    <span>🔤</span>
+                    <span class="tool-label">Text</span>
+                </button>
+
+                <button class="tool-btn" data-tool="image-upload" title="Insert / Paste Image" id="toolImageUpload">
+                    <span>🖼️</span>
+                    <span class="tool-label">Image</span>
+                </button>
+            </aside>
+
+            <!-- Secondary Sub-Panel: Shapes -->
+            <div class="sub-panel" id="shapesPanel">
+                <div class="sub-panel-title">
+                    <span>Pick a Shape</span>
+                </div>
+                <div class="sub-grid shapes-grid" id="shapesGrid">
+                    <button class="sub-item-btn active" data-shape="heart" title="Heart">💖</button>
+                    <button class="sub-item-btn" data-shape="star" title="Star">⭐</button>
+                    <button class="sub-item-btn" data-shape="circle" title="Circle">⭕</button>
+                    <button class="sub-item-btn" data-shape="rectangle" title="Rectangle">🟩</button>
+                    <button class="sub-item-btn" data-shape="triangle" title="Triangle">🔺</button>
+                    <button class="sub-item-btn" data-shape="cloud" title="Cloud">☁️</button>
+                    <button class="sub-item-btn" data-shape="sun" title="Sun">☀️</button>
+                    <button class="sub-item-btn" data-shape="flower" title="Flower">🌸</button>
+                    <button class="sub-item-btn" data-shape="line" title="Line">📏</button>
+                    <button class="sub-item-btn" data-shape="arrow" title="Arrow">➡️</button>
+                </div>
+                <div class="shape-toggle-fill">
+                    <span>Fill Shape</span>
+                    <label class="switch" for="shapeFillToggle">
+                        <input type="checkbox" id="shapeFillToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Secondary Sub-Panel: Stickers -->
+            <div class="sub-panel" id="stickersPanel">
+                <div class="sub-panel-title">
+                    <span>Cute Stickers & Stamps</span>
+                </div>
+                <div class="sub-grid stickers-grid" id="stickersGrid"></div>
+            </div>
+
+            <!-- Floating Bottom Dock (Colors & Brush Sizes) -->
+            <div class="floating-bottom-dock" id="floatingBottomDock" aria-label="Colors and Sizes">
+                <!-- Color Palette -->
+                <div class="colors-palette" id="colorsPalette"></div>
+
+                <!-- Custom Rainbow Color Picker -->
+                <div class="color-custom-btn" title="Choose Any Color" id="customColorWrapper">
+                    <input type="color" id="customColorInput" value="#ff3366" aria-label="Custom color picker">
+                </div>
+
+                <!-- Brush & Eraser Size Pickers -->
+                <div class="size-picker-group" id="sizePickerGroup">
+                    <button class="size-pill" data-size="6" title="Small" id="sizeSmall">
+                        <span class="size-dot" style="width: 6px; height: 6px;"></span>
+                    </button>
+                    <button class="size-pill active" data-size="14" title="Medium" id="sizeMedium">
+                        <span class="size-dot" style="width: 12px; height: 12px;"></span>
+                    </button>
+                    <button class="size-pill" data-size="30" title="Large" id="sizeLarge">
+                        <span class="size-dot" style="width: 18px; height: 18px;"></span>
+                    </button>
+                    <button class="size-pill" data-size="55" title="Jumbo" id="sizeJumbo">
+                        <span class="size-dot" style="width: 24px; height: 24px;"></span>
+                    </button>
+
+                    <div class="size-slider-wrapper">
+                        <input type="range" class="size-slider" id="brushSizeSlider" min="4" max="80" value="14" title="Adjust Brush Size" aria-label="Brush size slider">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Transform Confirmation Floating Dock -->
+            <div class="image-transform-dock hidden" id="imageTransformDock">
+                <span>Drag to move • Corner bubble to resize</span>
+                <button class="bubble-btn primary" id="btnCommitImage">
+                    <span>✅ Place</span>
+                </button>
+                <button class="bubble-btn danger" id="btnCancelImage">
+                    <span>❌ Cancel</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Hidden File Input for Image Upload -->
+        <input type="file" id="imageFileInput" accept="image/*" style="display: none;">
+
+        <!-- Confetti Celebration Canvas Overlay -->
+        <canvas id="confettiCanvas"></canvas>
+
+        <!-- Modal: Coloring Book Templates -->
+        <div class="modal-overlay" id="templatesModal" role="dialog" aria-modal="true" aria-labelledby="templatesModalTitle">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="templatesModalTitle">🎨 Choose a Coloring Page</h2>
+                    <button class="modal-close" aria-label="Close modal">&times;</button>
+                </div>
+                <div class="templates-grid" id="templatesGrid"></div>
+            </div>
+        </div>
+
+        <!-- Modal: Add Text -->
+        <div class="modal-overlay" id="textModal" role="dialog" aria-modal="true" aria-labelledby="textModalTitle">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="textModalTitle">🔤 Add Fun Text</h2>
+                    <button class="modal-close" aria-label="Close modal">&times;</button>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="textToolInput">Your Message:</label>
+                    <input type="text" class="form-input" id="textToolInput" placeholder="Type something fun..." maxlength="40">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Font Style:</label>
+                    <div class="font-options">
+                        <button class="font-option-btn active" data-font="'Bubblegum Sans', cursive" style="font-family: 'Bubblegum Sans', cursive;">Bubblegum</button>
+                        <button class="font-option-btn" data-font="'Fredoka', sans-serif" style="font-family: 'Fredoka', sans-serif;">Fredoka</button>
+                        <button class="font-option-btn" data-font="'Comic Sans MS', cursive" style="font-family: 'Comic Sans MS', cursive;">Comic</button>
+                        <button class="font-option-btn" data-font="cursive" style="font-family: cursive;">Playful</button>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
+                    <button class="bubble-btn btn-modal-cancel">Cancel</button>
+                    <button class="bubble-btn primary" id="btnAddText">✨ Add to Drawing</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Clear Canvas Confirmation -->
+        <div class="modal-overlay" id="clearConfirmModal" role="dialog" aria-modal="true" aria-labelledby="clearConfirmTitle">
+            <div class="modal-card" style="width: 400px; text-align: center;">
+                <div style="font-size: 54px; margin-bottom: 12px;">🧹</div>
+                <h2 class="modal-title" id="clearConfirmTitle" style="margin-bottom: 8px;">Start Fresh?</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 15px;">Do you want to clear your canvas and start a new drawing?</p>
+                <div style="display: flex; justify-content: center; gap: 12px;">
+                    <button class="bubble-btn btn-modal-cancel">Keep Drawing</button>
+                    <button class="bubble-btn danger" id="btnConfirmClear">Yes, Clear!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
